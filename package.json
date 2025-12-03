@@ -1,0 +1,24 @@
+{
+  "name": "editor-clinico-codemirror",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4173",
+    "deploy": "gh-pages -d dist"
+  },
+  "dependencies": {
+    "@codemirror/autocomplete": "^6.7.0",
+    "@codemirror/commands": "^6.2.0",
+    "@codemirror/lang-markdown": "^6.1.0",
+    "@codemirror/state": "^6.2.0",
+    "@codemirror/theme-one-dark": "^6.1.3",
+    "@codemirror/view": "^6.18.0",
+    "@replit/codemirror-vim": "^6.3.0"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0",
+    "vite": "5.3.5"
+  }
+}

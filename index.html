@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
+  <title>Editor Clínico Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/base.css">
+  <link rel="stylesheet" href="/src/layout.css">
+  <link rel="stylesheet" href="/src/components.css">
+</head>
+<body>
+  <!-- Menu Dropdown (Antigo Modal Sobre) -->
+  <div id="app-menu" class="dropdown-menu">
+    <div class="menu-header">Configurações</div>
+    
+    <label class="menu-item">
+      <input type="checkbox" id="check-theme">
+      <span>Modo Escuro</span>
+    </label>
+
+    <label class="menu-item">
+      <input type="checkbox" id="check-vim">
+      <span>Modo VIM (Edição Avançada)</span>
+    </label>
+
+    <div class="menu-footer">
+      <strong>Editor Clínico Lite v1.2</strong><br>
+      Offline & Seguro • <a href="https://codemirror.net/" target="_blank" class="color-inherit">CodeMirror 6</a><br>
+      © 2025 Sidney Alves Crestani Jr.
+    </div>
+  </div>
+
+  <!-- Toolbar -->
+  <div id="toolbar">
+    <!-- 1. Branding com Dropdown -->
+    <div id="brand-trigger" class="brand" title="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="/icons.svg#brand" /></svg>
+      <span>Editor Clínico</span>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><use href="/icons.svg#chevron" /></svg>
+    </div>
+
+    <!-- 2. Arquivo -->
+    <div class="group">
+      <button id="btn-new" class="icon-only" title="Novo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><use href="/icons.svg#file-new" /></svg>
+      </button>
+      <input type="file" id="fileInput" hidden accept=".txt,.md">
+      <button id="btn-open" title="Abrir" class="icon-only">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><use href="/icons.svg#folder-open" /></svg>
+      </button>
+      <button id="btn-save" title="Baixar" class="icon-only">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><use href="/icons.svg#download" /></svg>
+      </button>
+    </div>
+
+    <!-- 3. Undo/Redo & Ferramentas -->
+    <div class="group">
+      <button id="btn-undo" class="icon-only" title="Desfazer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><use href="/icons.svg#undo" /></svg>
+      </button>
+      <button id="btn-redo" class="icon-only" title="Refazer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><use href="/icons.svg#redo" /></svg>
+      </button>
+      <button id="btn-date" title="Inserir Data" class="icon-only">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><use href="/icons.svg#clock" /></svg>
+      </button>
+      <button id="btn-case" title="Maiúsculas/Minúsculas">
+        <span class="label-aa">Aa</span>
+      </button>
+    </div>
+
+    <!-- Spacer -->
+    <div class="spacer"></div>
+
+    <!-- 4. Ícone Modelos -->
+    <button id="btn-sidebar-toggle" class="icon-only" title="Modelos (Snippets)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><use href="/icons.svg#sidebar" /></svg>
+    </button>
+
+    <!-- 5. Botão Copiar -->
+    <button id="btn-copy" class="cta" title="Copiar Texto">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><use href="/icons.svg#copy" /></svg>
+      <span class="label">COPIAR</span>
+    </button>
+  </div>
+
+  <!-- Layout Principal -->
+  <div id="main-layout">
+    
+    <div id="editor-wrapper">
+      <div id="editor"></div>
+    </div>
+
+    <!-- Sidebar (Direita) -->
+    <div id="sidebar">
+      <div class="sidebar-header">
+        <span id="sidebar-title">Modelos</span>
+        <div class="actions-row">
+           <button id="btn-json" class="icon-only" title="JSON Import/Export">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><use href="/icons.svg#arrows" /></svg>
+           </button>
+           <button id="btn-sidebar-close" class="icon-only" title="Fechar">✕</button>
+        </div>
+      </div>
+      
+      <div class="sidebar-content">
+        <!-- Views da Sidebar (Lista, Edição, JSON) -->
+        <div id="view-list" class="view-container active">
+           <button id="btn-create-snippet" class="cta fullwidth mb10 center">+ Criar Novo</button>
+           <p class="helper-text helper-small">
+             Clique para inserir ou digite o atalho + <strong>Tab</strong>.
+           </p>
+           <ul id="snippet-list-ui" class="snippet-list"></ul>
+        </div>
+
+        <div id="view-edit" class="view-container">
+          <div class="edit-grid">
+            <div class="input-group">
+              <label>Nome</label>
+              <input type="text" id="edit-name">
+            </div>
+            <div class="input-group">
+              <label>Atalho (Gatilho)</label>
+              <input type="text" id="edit-trigger">
+            </div>
+          </div>
+          <div class="input-group flex-col flex-1">
+            <label>Conteúdo (${1:foco})</label>
+            <textarea id="edit-content" class="code-editor" spellcheck="false"></textarea>
+          </div>
+          <div class="mt-10 flex gap-8">
+            <button id="btn-cancel-edit" class="flex-1">Cancelar</button>
+            <button id="btn-save-snippet" class="cta flex-1 no-ml">Salvar</button>
+          </div>
+        </div>
+
+        <div id="view-json" class="view-container">
+           <p class="helper-text">Copie para backup ou cole para importar.</p>
+           <textarea id="json-editor" class="code-editor h300"></textarea>
+           <div class="mt-10 flex gap-8 wrap">
+             <button id="btn-copy-json" class="flex-1">Copiar</button>
+             <button id="btn-import-json" class="cta flex-1 no-ml">Importar</button>
+           </div>
+           <button id="btn-back-list" class="fullwidth mt-8">Voltar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="status">
+    <div class="status-item">
+      <span id="save-status" class="save-status">✓ Salvo</span>
+    </div>
+    <div class="status-item flex gap-10">
+      <span id="char-count">0 chars</span>
+      <span id="cursor-pos">Ln 1</span>
+    </div>
+  </div>
+
+  <div id="toast"><span id="toast-msg">Notificação</span></div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
