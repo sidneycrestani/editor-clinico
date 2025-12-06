@@ -3,7 +3,6 @@ import { EditorView, keymap, placeholder, drawSelection } from "@codemirror/view
 import { defaultKeymap, history, historyKeymap, undo, redo, insertTab } from "@codemirror/commands";
 import { markdown, markdownLanguage } from "@codemirror/lang-markdown";
 import { snippet, autocompletion } from "@codemirror/autocomplete";
-import { vim, Vim } from "@replit/codemirror-vim";
 import { syntaxHighlighting, foldGutter, codeFolding, foldKeymap } from "@codemirror/language";
 import { medicalLightTheme, medicalDarkTheme, HighlightStyles } from "../config/themes";
 
@@ -13,6 +12,7 @@ export class EditorManager extends EventTarget {
     this.storageKey = storageKey;
     this.view = null;
     this.snippetManager = snippetManager;
+    this.vimExtension = null;
     
     // Compartments para reconfiguração dinâmica
     this.themeConfig = new Compartment();
@@ -64,7 +64,7 @@ export class EditorManager extends EventTarget {
       EditorView.lineWrapping,
       autocompletion({ override: [this.snippetManager ? this.snippetManager.completionSource.bind(this.snippetManager) : null].filter(Boolean) }),
       this.highlightCompartment.of(syntaxHighlighting(isDark ? HighlightStyles.dark : HighlightStyles.light)),
-      this.vimConfig.of(useVim ? vim() : [])
+      this.vimConfig.of([])
     ];
 
     baseExtensions.push(this.themeConfig.of(isDark ? medicalDarkTheme : medicalLightTheme));
@@ -83,7 +83,7 @@ export class EditorManager extends EventTarget {
         if (tr.selection) this.onSelectionChange();
       }
     });
-    this.configureVim(); 
+    if (useVim) this.toggleVim(true);
 
     this.view.focus();
   }
@@ -124,9 +124,23 @@ export class EditorManager extends EventTarget {
     this.view.dispatch({ effects: [this.themeConfig.reconfigure(theme), this.highlightCompartment.reconfigure(syntaxHighlighting(style))] });
   }
 
-  toggleVim(enabled) {
+  async toggleVim(enabled) {
     if (!this.view) return;
-    this.view.dispatch({ effects: this.vimConfig.reconfigure(enabled ? vim() : []) });
+    if (enabled) {
+      if (!this.vimExtension) {
+        try {
+          const { vim, Vim } = await import("@replit/codemirror-vim");
+          this.vimExtension = vim();
+          this.configureVim(Vim);
+        } catch (e) {
+          console.error("Erro ao carregar módulo Vim:", e);
+          return;
+        }
+      }
+      this.view.dispatch({ effects: this.vimConfig.reconfigure(this.vimExtension) });
+    } else {
+      this.view.dispatch({ effects: this.vimConfig.reconfigure([]) });
+    }
   }
 
   insertSnippet(content) {
@@ -205,13 +219,14 @@ export class EditorManager extends EventTarget {
       this.view = null;
     }
   }
-  configureVim() {
-    Vim.map("jj", "<Esc>", "insert");
-    Vim.map("H", "^", "normal");
-    Vim.map("L", "$", "normal");
-    Vim.map("Y", "y$", "normal");
-    Vim.map("<", "<gv", "visual");
-    Vim.map(">", ">gv", "visual");
-    Vim.map("U", "<C-r>", "normal");
+  configureVim(VimInstance) {
+    if (!VimInstance) return;
+    VimInstance.map("jj", "<Esc>", "insert");
+    VimInstance.map("H", "^", "normal");
+    VimInstance.map("L", "$", "normal");
+    VimInstance.map("Y", "y$", "normal");
+    VimInstance.map("<", "<gv", "visual");
+    VimInstance.map(">", ">gv", "visual");
+    VimInstance.map("U", "<C-r>", "normal");
   }
 }

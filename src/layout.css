@@ -2,7 +2,7 @@
   flex: 1; display: flex; overflow: hidden; position: relative; height: calc(100vh - 56px - 28px);
 }
 #editor-wrapper {
-  flex: 1; display: flex; justify-content: center; background: var(--bg-app); padding: 30px 40px; position: relative; overflow: hidden; min-width: 0;
+  flex: 1; display: flex; justify-content: center; background: var(--bg-app); padding: 20px 40px; position: relative; overflow: hidden; min-width: 0;
 }
 @media(max-width: 768px) { #editor-wrapper { padding: 16px; } }
 #editor {
