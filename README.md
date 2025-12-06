@@ -1,6 +1,6 @@
-# Editor Clínico 🩺
+# MedDraft 🩺
 
-O **Editor Clínico** é uma ferramenta de anotação rápida, segura e *offline-first*, desenvolvida especificamente para profissionais de saúde e estudantes de medicina. Focado em produtividade, ele permite a criação de evoluções (SOAP), prescrições e resumos utilizando Markdown, com um poderoso sistema de **Snippets (Modelos)**.
+O MedDraft é uma ferramenta de anotação rápida, segura e *offline-first*, desenvolvida especificamente para profissionais de saúde e estudantes de medicina. Focado em produtividade, ele permite a criação de evoluções (SOAP), prescrições e resumos utilizando Markdown, com um poderoso sistema de **Snippets (Modelos)**.
 
 > **Privacidade Total:** Todos os dados são salvos localmente no navegador (`localStorage`). Nenhuma informação do paciente é enviada para servidores externos.
 
@@ -9,7 +9,7 @@ O **Editor Clínico** é uma ferramenta de anotação rápida, segura e *offline
 ### 🚀 Acesso Rápido (Live Demo)
 
 **Utilize a versão online agora mesmo (sem instalação):**
-### [🔗 https://sidneycrestani.github.io/editor-clinico/](https://sidneycrestani.github.io/editor-clinico/)
+### [🔗 https://sidneycrestani.github.io/MedDraft/](https://sidneycrestani.github.io/MedDraft/)
 
 ---
 
@@ -24,7 +24,7 @@ O **Editor Clínico** é uma ferramenta de anotação rápida, segura e *offline
 - **Baseado no CodeMirror 6:** Editor moderno, rápido e extensível.
 - **Markdown Support:** Realce de sintaxe para fácil formatação.
 - **Modo Vim:** Para usuários avançados que preferem navegação via teclado (ativável nas configurações).
-- **Temas:** Suporte nativo para **Modo Claro** e **Modo Escuro** (Medical Themes).
+- **Temas:** Suporte nativo para **Modo Claro** e **Modo Escuro**.
 
 ### 🚀 Produtividade Clínica
 - **Gerenciador de Modelos (Snippets):**
@@ -57,8 +57,8 @@ Se você é um desenvolvedor e deseja contribuir ou rodar localmente:
 
 1. **Clone o repositório:**
    ```bash
-   git clone https://github.com/sidneycrestani/editor-clinico.git
-   cd editor-clinico
+   git clone https://github.com/sidneycrestani/MedDraft.git
+   cd MedDraft
    ```
 
 2. **Instale as dependências:**
