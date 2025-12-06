@@ -44,7 +44,7 @@ const baseThemeStyles = {
     paddingRight: "8px" 
   },
   ".cm-activeLineGutter": { 
-    backgroundColor: "var(--bg-gutter)" // Movido para base
+    backgroundColor: "transparent" // Movido para base
   },
   ".cm-gutters": { 
     padding: "0 8px",
@@ -218,7 +218,7 @@ const sharedHighlightStyle = HighlightStyle.define([
   { tag: t.strong, color: "var(--text-main)", fontWeight: "700" },
   { tag: t.emphasis, color: "var(--text-main)", fontStyle: "italic" },
   { tag: t.link, color: "var(--primary)", textDecoration: "underline" },
-  { tag: t.monospace, color: "var(--text-main)", background: "var(--bg-gutter)", borderRadius: "3px", padding: "0 4px" },
+  { tag: t.monospace, color: "var(--text-main)", background: "transparent", borderRadius: "3px", padding: "0 4px" },
   { tag: t.list, color: "var(--primary)", fontWeight: "700" },
   { tag: t.quote, color: "var(--text-muted)", fontStyle: "italic" },
   { tag: t.processingInstruction, color: "var(--text-muted)" },

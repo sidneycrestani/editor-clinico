@@ -1,9 +1,9 @@
 import { EditorState, Compartment } from "@codemirror/state";
 import { EditorView, keymap, placeholder, drawSelection } from "@codemirror/view";
-import { defaultKeymap, history, historyKeymap, indentWithTab, undo, redo } from "@codemirror/commands";
+import { defaultKeymap, history, historyKeymap, undo, redo, insertTab } from "@codemirror/commands";
 import { markdown, markdownLanguage } from "@codemirror/lang-markdown";
 import { snippet, autocompletion } from "@codemirror/autocomplete";
-import { vim } from "@replit/codemirror-vim";
+import { vim, Vim } from "@replit/codemirror-vim";
 import { syntaxHighlighting, foldGutter, codeFolding, foldKeymap } from "@codemirror/language";
 import { medicalLightTheme, medicalDarkTheme, HighlightStyles } from "../config/themes";
 
@@ -39,7 +39,12 @@ export class EditorManager extends EventTarget {
     }
 
     const baseExtensions = [
-      this.keymapConfig.of(keymap.of([indentWithTab, ...defaultKeymap, ...historyKeymap, ...foldKeymap])),
+      this.keymapConfig.of(keymap.of([ {
+          key: "Tab",
+          preventDefault: true,
+          run: insertTab,
+        },
+        ...defaultKeymap, ...historyKeymap, ...foldKeymap])),
       history(),
       drawSelection(),
       foldGutter({
@@ -78,6 +83,7 @@ export class EditorManager extends EventTarget {
         if (tr.selection) this.onSelectionChange();
       }
     });
+    this.configureVim(); 
 
     this.view.focus();
   }
@@ -198,5 +204,14 @@ export class EditorManager extends EventTarget {
       this.view.destroy();
       this.view = null;
     }
+  }
+  configureVim() {
+    Vim.map("jj", "<Esc>", "insert");
+    Vim.map("H", "^", "normal");
+    Vim.map("L", "$", "normal");
+    Vim.map("Y", "y$", "normal");
+    Vim.map("<", "<gv", "visual");
+    Vim.map(">", ">gv", "visual");
+    Vim.map("U", "<C-r>", "normal");
   }
 }

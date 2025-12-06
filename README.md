@@ -70,13 +70,18 @@ Se você deseja contribuir com o código ou rodar uma instância própria:
 
 ## ⌨️ Atalhos de Teclado Essenciais
 
-| Tecla | Ação |
-| :--- | :--- |
-| `Tab` | Expande Snippet (se gatilho digitado) ou Indenta |
-| `Ctrl` + `Space` | Abre menu de autocompletar |
-| `Ctrl` + `Z` | Desfazer |
-| `Ctrl` + `Y` | Refazer |
-| `Ctrl` + `[` | Diminuir indentação |
+| Ação | Windows / Linux | Mac (macOS) |
+| :--- | :--- | :--- |
+| Menu de Autocompletar | `Ctrl` + `Espaço` | `Ctrl` + `Espaço` |
+| Mover Linha (Cima/Baixo) | `Alt` + `↑` / `↓` | `Option` + `↑` / `↓` |
+| Duplicar Linha | `Shift` + `Alt` + `↑` / `↓` | `Shift` + `Option` + `↑` / `↓` |
+| Apagar Linha Inteira | `Shift` + `Ctrl` + `K` | `Shift` + `Cmd` + `K` |
+| Desfazer | `Ctrl` + `Z` | `Cmd` + `Z` |
+| Refazer | `Ctrl` + `Y` | `Cmd` + `Shift` + `Z` |
+
+
+
+
 
 ## 🧩 Estrutura do Projeto
 
