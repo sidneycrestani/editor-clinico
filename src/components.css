@@ -1,4 +1,4 @@
-#toolbar { height: 56px; flex-shrink: 0; display: flex; align-items: center; gap: 8px; padding: 0 16px; background: var(--bg-surface); border-bottom: 1px solid var(--border); user-select: none; box-shadow: var(--shadow-sm); z-index: 20; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+#toolbar { height: 45px; flex-shrink: 0; display: flex; align-items: center; gap: 8px; padding: 0 16px; background: var(--bg-surface); border-bottom: 1px solid var(--border); user-select: none; box-shadow: var(--shadow-sm); z-index: 20; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 #toolbar::-webkit-scrollbar { height: 0px; display: none; }
 .brand { font-weight: 700; font-size: 15px; color: var(--primary); margin-right: 12px; padding-right: 12px; border-right: 1px solid var(--border); cursor: pointer; display: flex; align-items: center; gap: 6px; transition: color 0.2s; white-space: nowrap; }
 .brand:hover { color: var(--primary-hover); }
@@ -47,6 +47,7 @@ button svg { width: 18px; height: 18px; stroke-width: 2px; }
 .mb10 { margin-bottom: 10px; }
 .center { justify-content: center; }
 .helper-small { font-size: 11px; margin-bottom: 10px; }
+.helper-text { font-size: 14px; margin-bottom: 20px; }
 .flex-col { display: flex; flex-direction: column; }
 .flex-1 { flex: 1; }
 .mt-10 { margin-top: 10px; }
