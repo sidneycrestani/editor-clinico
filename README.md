@@ -1,8 +1,12 @@
 <div align="center">
   <img src="https://raw.githubusercontent.com/sidneycrestani/MedDraft/refs/heads/main/public/favicon/favicon.svg" alt="MedDraft Logo" width="100" height="100" />
   <h1>MedDraft</h1>
+  <h3>Editor Clínico Open Source</h3>
   <p>
     <b>Fluxo Clínico. Foco Absoluto. Privacidade Total.</b>
+  </p>
+  <p>
+    Uma alternativa offline-first ao bloco de notas para médicos e estudantes.
   </p>
   
   <p>
@@ -21,9 +25,15 @@
 
 ## 🩺 O que é o MedDraft?
 
-O **MedDraft** não é apenas um bloco de notas. É um ambiente de escrita desenhado para a velocidade de raciocínio do profissional de saúde. 
+O **MedDraft** é um ambiente de escrita desenhado para a velocidade de raciocínio do profissional de saúde (Médicos, Enfermeiros e Acadêmicos). 
 
-Unindo a agilidade do **Markdown**, o poder dos **Snippets** (modelos inteligentes) e a privacidade do armazenamento local, ele serve como o "rascunho perfeito" para evoluções (SOAP), anamneses e prescrições antes de serem transferidas para prontuários eletrônicos lentos e burocráticos.
+Unindo a agilidade do **Markdown**, o poder dos **Snippets** (modelos inteligentes) e a privacidade do armazenamento local, ele serve como o "rascunho perfeito" para:
+- **Evoluções (SOAP)**
+- **Anamneses**
+- **Prescrições**
+- **Resumos de Alta**
+
+Tudo isso antes de transferir os dados para prontuários eletrônicos (PEP) lentos e burocráticos.
 
 
 ## ✨ Funcionalidades Principais
