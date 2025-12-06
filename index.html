@@ -3,21 +3,61 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
-  <title>MedDraft</title>
+  
+  <title>MedDraft - Editor Clínico</title>
+  <meta name="description" content="Editor de texto médico offline-first. Substitua o bloco de notas por Markdown, Snippets e Vim. Evoluções clínicas rápidas, seguras e privadas no navegador.">
+  <meta name="keywords" content="MedDraft, Editor Médico, Prontuário Offline, Markdown para Médicos, SOAP, Anamnese Rápida, CodeMirror, Privacidade de Dados">
+  <meta name="author" content="Sidney Alves Crestani Jr.">
+  <meta name="theme-color" content="#0ea5e9">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sidneycrestani.github.io/MedDraft/">
+  <meta property="og:title" content="MedDraft | Fluxo Clínico com Foco Absoluto">
+  <meta property="og:description" content="O rascunho perfeito para evoluções e anamneses. Sem nuvem, sem rastreamento, 100% local.">
+  <meta property="og:image" content="https://raw.githubusercontent.com/sidneycrestani/MedDraft/refs/heads/main/public/favicon/favicon.svg">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="MedDraft - Editor Clínico">
+  <meta name="twitter:description" content="Privacidade total e velocidade para profissionais de saúde.">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
   <link rel="icon" type="image/png" href="/MedDraft/favicon/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/MedDraft/favicon/favicon.svg" />
   <link rel="shortcut icon" href="/MedDraft/favicon/favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="/MedDraft/favicon/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-title" content="MedDraft" />
   <link rel="manifest" href="/MedDraft/favicon/site.webmanifest" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "WebApplication",
+    "name": "MedDraft",
+    "url": "https://sidneycrestani.github.io/MedDraft/",
+    "applicationCategory": "MedicalApplication",
+    "operatingSystem": "Web Browser",
+    "browserRequirements": "Requires JavaScript. Works best in Chrome/Edge/Safari.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "BRL"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Sidney Alves Crestani Jr.",
+      "url": "https://sidneycrestani.github.io"
+    },
+    "featureList": "Offline-first, Local Storage, Markdown Support, Medical Snippets, Vim Mode",
+    "description": "Ferramenta de produtividade médica focada em privacidade local e velocidade de digitação."
+  }
+  </script>
   <script type="module" crossorigin src="/MedDraft/assets/index-My5WfbAw.js"></script>
   <link rel="stylesheet" crossorigin href="/MedDraft/assets/index-CBu6nzZW.css">
 </head>
 <body>
-  <!-- Menu Dropdown (Antigo Modal Sobre) -->
   <div id="app-menu" class="dropdown-menu">
     <div class="menu-header">Configurações</div>
     
@@ -38,27 +78,20 @@
     </div>
   </div>
 
-  <!-- Toolbar -->
   <div id="toolbar">
-<!-- Dentro do index.html -->
 <div id="brand-trigger" class="brand" title="Menu">
-  <!-- LOGO EXCLUSIVA MEDDRAFT -->
   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-icon">
-    <!-- O Batimento (Linha) -->
     <path d="M3 16H8L12 6L18 24L23 16H25" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
     
-    <!-- O Cursor (Bloco Sólido) - Representa o Editor -->
     <rect x="27" y="10" width="3" height="12" rx="1" fill="#0ea5e9" class="cursor-blink"/>
   </svg>
   
-  <!-- Tipografia Diferenciada -->
   <div class="brand-text">
     <span class="med">Med</span><span class="draft">Draft</span>
 </div>
       <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><use href="/MedDraft/icons.svg#chevron" /></svg>
     </div>
 
-    <!-- 2. Arquivo -->
     <div class="group">
       <button id="btn-new" class="icon-only" title="Novo">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><use href="/MedDraft/icons.svg#file-new" /></svg>
@@ -72,7 +105,6 @@
       </button>
     </div>
 
-    <!-- 3. Undo/Redo & Ferramentas -->
     <div class="group">
       <button id="btn-undo" class="icon-only" title="Desfazer">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><use href="/MedDraft/icons.svg#undo" /></svg>
@@ -88,29 +120,24 @@
       </button>
     </div>
 
-    <!-- Spacer -->
     <div class="spacer"></div>
 
-    <!-- 4. Ícone Modelos -->
     <button id="btn-sidebar-toggle" class="icon-only" title="Modelos (Snippets)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><use href="/MedDraft/icons.svg#sidebar" /></svg>
     </button>
 
-    <!-- 5. Botão Copiar -->
     <button id="btn-copy" class="cta" title="Copiar Texto">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><use href="/MedDraft/icons.svg#copy" /></svg>
       <span class="label">COPIAR</span>
     </button>
   </div>
 
-  <!-- Layout Principal -->
   <div id="main-layout">
     
     <div id="editor-wrapper">
       <div id="editor"></div>
     </div>
 
-    <!-- Sidebar (Direita) -->
     <div id="sidebar">
       <div class="sidebar-header">
         <span id="sidebar-title">Modelos</span>
@@ -123,7 +150,6 @@
       </div>
       
       <div class="sidebar-content">
-        <!-- Views da Sidebar (Lista, Edição, JSON) -->
         <div id="view-list" class="view-container active">
            <button id="btn-create-snippet" class="cta fullwidth mb10 center">+ Criar Novo</button>
            <p class="helper-text helper-small">
