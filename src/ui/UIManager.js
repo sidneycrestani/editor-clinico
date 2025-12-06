@@ -92,8 +92,28 @@ export class UIManager {
     this.editor.addEventListener("doc-change", (e) => {
       const { length } = e.detail;
       this.dom.charCount.textContent = `${length} chars`;
-      this.dom.saveStatus.style.opacity = "1";
-      setTimeout(() => { this.dom.saveStatus.style.opacity = "0"; }, 2000);
+    });
+    this.editor.addEventListener("save-status", (e) => {
+      const statusEl = this.dom.saveStatus;
+      
+      statusEl.style.opacity = "1";
+
+      if (e.detail.status === "saving") {
+        statusEl.textContent = "Salvando...";
+        statusEl.style.color = "var(--warning)";
+        statusEl.classList.add("blink"); 
+      } 
+      else if (e.detail.status === "saved") {
+        statusEl.classList.remove("blink"); 
+        statusEl.textContent = "✓ Salvo";
+        statusEl.style.color = "var(--success)";
+        
+      }
+      else if (e.detail.status === "error") {
+        statusEl.classList.remove("blink");
+        statusEl.textContent = "⚠ Erro";
+        statusEl.style.color = "var(--danger)";
+      }
     });
 
     this.editor.addEventListener("selection-change", (e) => {

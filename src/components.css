@@ -57,7 +57,7 @@ button svg { width: 18px; height: 18px; stroke-width: 2px; }
 .no-ml { margin-left: 0; }
 .wrap { flex-wrap: wrap; }
 .h300 { height: 300px; }
-.save-status { color: var(--success); opacity: 0; transition: opacity 0.5s; }
+.save-status { color: var(--success); opacity: 1; transition: opacity 0.5s; }
 #toast { position: fixed; top: 70px; left: 50%; transform: translateX(-50%) translateY(-20px); background: #1e293b; color: #fff; padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 500; opacity: 0; visibility: hidden; z-index: 2001; box-shadow: var(--shadow-lg); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 #toast.show { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
 

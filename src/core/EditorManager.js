@@ -85,21 +85,24 @@ export class EditorManager extends EventTarget {
   onDocChange() {
     const val = this.view.state.doc.toString();
     
-    // Dispara evento imediato para UI
     const ev = new CustomEvent("doc-change", { detail: { content: val, length: val.length } });
     this.dispatchEvent(ev);
 
-    // 2. Sanitização: Debounce para salvar no localStorage (Performance)
-    // Evita IO disk thrashing a cada caractere
+       this.dispatchEvent(new CustomEvent("save-status", { detail: { status: "saving" } }));
+
     if (this.saveTimeout) clearTimeout(this.saveTimeout);
     
     this.saveTimeout = setTimeout(() => {
       try {
         localStorage.setItem(this.storageKey, val);
+        
+        this.dispatchEvent(new CustomEvent("save-status", { detail: { status: "saved" } }));
+        
       } catch (e) {
-        console.warn("Falha ao salvar no localStorage", e);
+        console.warn("Falha ao salvar", e);
+        this.dispatchEvent(new CustomEvent("save-status", { detail: { status: "error" } }));
       }
-    }, 1000); // Salva apenas após 1 segundo de inatividade
+    }, 1000); 
   }
 
   onSelectionChange() {
