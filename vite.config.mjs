@@ -1,13 +1,22 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from "vite";
+import { visualizer } from "rollup-plugin-visualizer";
 
 export default defineConfig({
-  base: '/MedDraft/',
+  plugins: [
+    visualizer({
+      open: true,
+      filename: "stats.html",
+      gzipSize: true,
+      brotliSize: true,
+    }),
+  ],
+  base: "/MedDraft/",
   server: {
     port: 5173,
-    open: true
+    open: true,
   },
   build: {
-    outDir: 'dist',
-    sourcemap: false
-  }
-})
+    outDir: "dist",
+    sourcemap: false,
+  },
+});

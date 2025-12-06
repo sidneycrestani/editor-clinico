@@ -1,104 +1,109 @@
 :root {
   /* --- 1. Paleta Base (Light Mode) --- */
-  
+
   /* Fundos */
-  --bg-app: #f1f5f9;       /* Slate-100 */
-  --bg-surface: #ffffff;   /* White */
-  --bg-gutter: #f8fafc;    /* Slate-50 (Sutilmente diferente do branco) */
+  --bg-app: #f1f5f9; /* Slate-100 */
+  --bg-surface: #ffffff; /* White */
+  --bg-gutter: #f8fafc; /* Slate-50 (Sutilmente diferente do branco) */
   --overlay-bg: rgba(15, 23, 42, 0.6); /* Backdrop para modais */
 
   /* Bordas e Divisores */
-  --border: #cbd5e1;       /* Slate-300 */
+  --border: #cbd5e1; /* Slate-300 */
   --focus-ring: rgba(14, 165, 233, 0.4); /* Anel de foco acessível */
 
   /* Textos */
-  --text-main: #334155;    /* Slate-700 (Alto contraste mas suave) */
-  --text-muted: #64748b;   /* Slate-500 */
-  --text-inverse: #ffffff; 
+  --text-main: #334155; /* Slate-700 (Alto contraste mas suave) */
+  --text-muted: #64748b; /* Slate-500 */
+  --text-inverse: #ffffff;
 
   /* Cor Primária (Brand - Sky) */
-  --primary: #0ea5e9;      /* Sky-500 */
-  --primary-hover: #0284c7;/* Sky-600 */
-  --primary-fg: #ffffff;   /* Texto dentro do botão primário */
+  --primary: #0ea5e9; /* Sky-500 */
+  --primary-hover: #0284c7; /* Sky-600 */
+  --primary-fg: #ffffff; /* Texto dentro do botão primário */
 
   /* Estados de Feedback */
-  --danger: #ef4444;       /* Red-500 */
-  --success: #10b981;      /* Emerald-500 */
-  --warning: #f59e0b;      /* Amber-500 */
+  --danger: #ef4444; /* Red-500 */
+  --success: #10b981; /* Emerald-500 */
+  --warning: #f59e0b; /* Amber-500 */
 
   /* Botões e Interações (Neutros) */
-  --btn-hover: #e2e8f0;      /* Slate-200 */
-  --btn-active-bg: #e0f2fe;  /* Sky-100 (Leve tint de azul) */
-  --btn-active-fg: #0369a1;  /* Sky-700 */
+  --btn-hover: #e2e8f0; /* Slate-200 */
+  --btn-active-bg: #e0f2fe; /* Sky-100 (Leve tint de azul) */
+  --btn-active-fg: #0369a1; /* Sky-700 */
 
   /* Seleção de Texto */
-  --selection-bg: #bae6fd;   /* Sky-200 */
+  --selection-bg: #bae6fd; /* Sky-200 */
 
   /* Scrollbars */
   --sb-track: transparent;
-  --sb-thumb: #cbd5e1;       /* Slate-300 */
+  --sb-thumb: #cbd5e1; /* Slate-300 */
   --sb-thumb-hover: #94a3b8; /* Slate-400 */
 
   /* Sombras (Tailwind preset) */
-  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 /* --- 2. Paleta Dark Mode --- */
 body.dark-mode {
   /* Fundos */
-  --bg-app: #0f172a;       /* Slate-900 */
-  --bg-surface: #1e293b;   /* Slate-800 */
-  --bg-gutter: #1e293b;    /* Igual à surface para continuidade, ou #162032 para contraste */
-  
+  --bg-app: #0f172a; /* Slate-900 */
+  --bg-surface: #1e293b; /* Slate-800 */
+  --bg-gutter: #1e293b; /* Igual à surface para continuidade, ou #162032 para contraste */
+
   /* Bordas */
-  --border: #334155;       /* Slate-700 */
+  --border: #334155; /* Slate-700 */
   --focus-ring: rgba(56, 189, 248, 0.5);
 
   /* Textos */
-  --text-main: #e2e8f0;    /* Slate-200 */
-  --text-muted: #94a3b8;   /* Slate-400 */
-  
+  --text-main: #e2e8f0; /* Slate-200 */
+  --text-muted: #94a3b8; /* Slate-400 */
+
   /* Cor Primária (Ajustada para brilhar no escuro) */
-  --primary: #38bdf8;      /* Sky-400 (Mais claro que o light mode) */
-  --primary-hover: #0ea5e9;/* Sky-500 */
-  --primary-fg: #0f172a;   /* Texto escuro no botão claro melhora leitura */
+  --primary: #38bdf8; /* Sky-400 (Mais claro que o light mode) */
+  --primary-hover: #0ea5e9; /* Sky-500 */
+  --primary-fg: #0f172a; /* Texto escuro no botão claro melhora leitura */
 
   /* Estados de Feedback (Suavizados para não ferir os olhos) */
-  --danger: #f87171;       /* Red-400 */
-  --success: #34d399;      /* Emerald-400 */
-  --warning: #fbbf24;      /* Amber-400 */
+  --danger: #f87171; /* Red-400 */
+  --success: #34d399; /* Emerald-400 */
+  --warning: #fbbf24; /* Amber-400 */
 
   /* Botões e Interações */
-  --btn-hover: #334155;      /* Slate-700 */
-  --btn-active-bg: #1e3a8a;  /* Blue-900 (Fundo escuro saturado) */
-  --btn-active-fg: #bae6fd;  /* Sky-200 */
+  --btn-hover: #334155; /* Slate-700 */
+  --btn-active-bg: #1e3a8a; /* Blue-900 (Fundo escuro saturado) */
+  --btn-active-fg: #bae6fd; /* Sky-200 */
 
   /* Seleção */
   --selection-bg: rgba(56, 189, 248, 0.3); /* Transparente é melhor no dark */
 
   /* Scrollbars */
   --sb-track: transparent;
-  --sb-thumb: #475569;       /* Slate-600 */
+  --sb-thumb: #475569; /* Slate-600 */
   --sb-thumb-hover: #64748b; /* Slate-500 */
 }
 
 /* --- 3. Reset e Globais --- */
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
-  margin: 0; 
-  display: flex; 
-  flex-direction: column; 
-  height: 100vh; 
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
   overflow: hidden;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-  
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+
   /* As variáveis aplicam as cores aqui */
-  background: var(--bg-app); 
+  background: var(--bg-app);
   color: var(--text-main);
-  
+
   /* Suaviza a troca de tema, mas evita lag em low-end devices aplicando apenas em cores */
   transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -107,7 +112,7 @@ body {
 ::selection {
   background-color: var(--selection-bg);
   /* Mantém a cor do texto original ou força uma cor legível se necessário */
-  color: inherit; 
+  color: inherit;
 }
 
 /* --- 5. Scrollbars Modernas --- */
@@ -118,22 +123,22 @@ body {
 }
 
 /* Chrome, Edge, Safari */
-::-webkit-scrollbar { 
+::-webkit-scrollbar {
   width: 8px; /* Um pouco mais largo para facilitar o clique */
-  height: 8px; 
+  height: 8px;
 }
 
-::-webkit-scrollbar-track { 
-  background: var(--sb-track); 
+::-webkit-scrollbar-track {
+  background: var(--sb-track);
 }
 
 ::-webkit-scrollbar-corner {
   background: transparent;
 }
 
-::-webkit-scrollbar-thumb { 
-  background: var(--sb-thumb); 
-  border-radius: 4px; 
+::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb);
+  border-radius: 4px;
   border: 2px solid transparent; /* Truque para criar "padding" no scrollbar */
   background-clip: content-box;
 }

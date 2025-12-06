@@ -12,4 +12,3 @@ window.addEventListener("DOMContentLoaded", () => {
   const ui = new UIManager({ editorManager, snippetManager });
   ui.init();
 });
-

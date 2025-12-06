@@ -1,26 +1,106 @@
 #main-layout {
-  flex: 1; display: flex; overflow: hidden; position: relative; height: calc(100vh - 56px - 28px);
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  height: calc(100vh - 56px - 28px);
 }
 #editor-wrapper {
-  flex: 1; display: flex; justify-content: center; background: var(--bg-app); padding: 15px 40px; position: relative; overflow: hidden; min-width: 0;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  background: var(--bg-app);
+  padding: 15px 40px;
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
 }
-@media(max-width: 768px) { #editor-wrapper { padding: 16px; } }
+@media (max-width: 768px) {
+  #editor-wrapper {
+    padding: 16px;
+  }
+}
 #editor {
-  width: 100%; max-width: 960px; height: 100%; background: var(--bg-surface); border: 1px solid var(--border);
-  border-radius: 8px; box-shadow: var(--shadow-md); overflow: hidden; font-family: 'Crimson Pro', serif !important;
+  width: 100%;
+  max-width: 960px;
+  height: 100%;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  font-family: "Crimson Pro", serif !important;
 }
-@media(max-width: 768px) {
-  #editor { max-width: 100%; border-radius: 0; border: none; border-bottom: 1px solid var(--border); box-shadow: none; }
+@media (max-width: 768px) {
+  #editor {
+    max-width: 100%;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    box-shadow: none;
+  }
 }
-#sidebar { width: 0; background: var(--bg-surface); border-left: 1px solid var(--border); display: flex; flex-direction: column; transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); overflow: hidden; z-index: 30; box-shadow: -5px 0 15px rgba(0,0,0,0.02); }
-#sidebar.open { width: 340px; }
-@media(max-width: 600px) {
-  #sidebar { position: absolute; right: 0; top: 0; height: 100%; width: 0; transition: width 0.3s; }
-  #sidebar.open { width: 85%; box-shadow: -10px 0 30px rgba(0,0,0,0.2); }
+#sidebar {
+  width: 0;
+  background: var(--bg-surface);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  z-index: 30;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.02);
 }
-.sidebar-header { height: 50px; flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; border-bottom: 1px solid var(--border); background: var(--bg-gutter); font-weight: 600; font-size: 14px; }
-.sidebar-content { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; }
-#status { height: 28px; background: var(--bg-surface); color: var(--text-muted); border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; padding: 0 16px; font-size: 11px; font-weight: 500; flex-shrink: 0; z-index: 40; }
+#sidebar.open {
+  width: 340px;
+}
+@media (max-width: 600px) {
+  #sidebar {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    transition: width 0.3s;
+  }
+  #sidebar.open {
+    width: 85%;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
+  }
+}
+.sidebar-header {
+  height: 50px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-gutter);
+  font-weight: 600;
+  font-size: 14px;
+}
+.sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+#status {
+  height: 28px;
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  font-size: 11px;
+  font-weight: 500;
+  flex-shrink: 0;
+  z-index: 40;
+}
 
 /* Branding Styles */
 .brand {
@@ -31,8 +111,13 @@
 
 /* Animação sutil do cursor piscando (opcional, mas fica incrível) */
 @keyframes soft-blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
 .cursor-blink {
@@ -47,7 +132,7 @@
 }
 
 .brand-text .med {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 700;
   font-size: 1.1rem;
   letter-spacing: -0.5px;
@@ -55,7 +140,7 @@
 }
 
 .brand-text .draft {
-  font-family: 'JetBrains Mono', monospace; /* Fonte de código para "Draft" */
+  font-family: "JetBrains Mono", monospace; /* Fonte de código para "Draft" */
   font-weight: 400;
   font-size: 0.85rem;
   color: #0ea5e9; /* Cor de destaque (Azul Sky) */
@@ -63,9 +148,15 @@
   letter-spacing: 1px;
 }
 @keyframes pulse-opacity {
-  0% { opacity: 1; }
-  50% { opacity: 0.4; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .blink {

@@ -1,6 +1,3 @@
-import { EditorManager } from "../core/EditorManager";
-import { SnippetManager } from "../data/SnippetManager";
-
 export class UIManager {
   constructor({ editorManager, snippetManager }) {
     this.editor = editorManager;
@@ -25,7 +22,7 @@ export class UIManager {
       cursorPos: document.getElementById("cursor-pos"),
       saveStatus: document.getElementById("save-status"),
       toast: document.getElementById("toast"),
-      toastMsg: document.getElementById("toast-msg")
+      toastMsg: document.getElementById("toast-msg"),
     };
   }
 
@@ -69,15 +66,23 @@ export class UIManager {
     this.bindClick("btn-import-json", () => this.saveJsonImport());
 
     this.dom.checkTheme.addEventListener("change", () => this.toggleTheme());
-    this.dom.checkVim.addEventListener("change", (e) => this.toggleVim(e.target.checked));
-    this.dom.fileInput.addEventListener("change", (e) => this.handleFileOpen(e));
+    this.dom.checkVim.addEventListener("change", (e) =>
+      this.toggleVim(e.target.checked)
+    );
+    this.dom.fileInput.addEventListener("change", (e) =>
+      this.handleFileOpen(e)
+    );
 
     this.dom.trigger.addEventListener("click", (e) => {
       e.stopPropagation();
       this.dom.menu.classList.toggle("show");
     });
     document.addEventListener("click", (e) => {
-      if (this.dom.menu.classList.contains("show") && !this.dom.menu.contains(e.target) && !this.dom.trigger.contains(e.target)) {
+      if (
+        this.dom.menu.classList.contains("show") &&
+        !this.dom.menu.contains(e.target) &&
+        !this.dom.trigger.contains(e.target)
+      ) {
         this.dom.menu.classList.remove("show");
       }
     });
@@ -95,21 +100,18 @@ export class UIManager {
     });
     this.editor.addEventListener("save-status", (e) => {
       const statusEl = this.dom.saveStatus;
-      
+
       statusEl.style.opacity = "1";
 
       if (e.detail.status === "saving") {
         statusEl.textContent = "Salvando...";
         statusEl.style.color = "var(--warning)";
-        statusEl.classList.add("blink"); 
-      } 
-      else if (e.detail.status === "saved") {
-        statusEl.classList.remove("blink"); 
+        statusEl.classList.add("blink");
+      } else if (e.detail.status === "saved") {
+        statusEl.classList.remove("blink");
         statusEl.textContent = "✓ Salvo";
         statusEl.style.color = "var(--success)";
-        
-      }
-      else if (e.detail.status === "error") {
+      } else if (e.detail.status === "error") {
         statusEl.classList.remove("blink");
         statusEl.textContent = "⚠ Erro";
         statusEl.style.color = "var(--danger)";
@@ -142,7 +144,8 @@ export class UIManager {
 
   toggleSidebar(forceState) {
     const btn = this.dom.btnSidebarToggle;
-    this.isSidebarOpen = typeof forceState === "boolean" ? forceState : !this.isSidebarOpen;
+    this.isSidebarOpen =
+      typeof forceState === "boolean" ? forceState : !this.isSidebarOpen;
     if (this.isSidebarOpen) {
       this.dom.sidebar.classList.add("open");
       btn.classList.add("active");
@@ -156,7 +159,7 @@ export class UIManager {
   }
 
   switchView(viewId) {
-    ["view-list", "view-edit", "view-json"].forEach(id => {
+    ["view-list", "view-edit", "view-json"].forEach((id) => {
       const el = document.getElementById(id);
       if (el) el.classList.remove("active");
     });
@@ -220,8 +223,14 @@ export class UIManager {
           if (window.innerWidth < 600) this.toggleSidebar(false);
         }
       });
-      editBtn.addEventListener("click", (e) => { e.stopPropagation(); this.editSnippet(index); });
-      delBtn.addEventListener("click", (e) => { e.stopPropagation(); this.deleteSnippet(index); });
+      editBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        this.editSnippet(index);
+      });
+      delBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        this.deleteSnippet(index);
+      });
 
       list.appendChild(li);
     });
@@ -250,11 +259,16 @@ export class UIManager {
     const name = this.dom.editName.value.trim();
     const trigger = this.dom.editTrigger.value.trim();
     const content = this.dom.editContent.value;
-    if (!name || !trigger) { alert("Preencha Nome e Atalho."); return; }
+    if (!name || !trigger) {
+      alert("Preencha Nome e Atalho.");
+      return;
+    }
     const obj = { name, trigger, content };
     if (this.editingIndex === -1) {
-      const exists = this.snippets.list().find(s => s.trigger === trigger);
-      if (exists) { if (!confirm(`O atalho "${trigger}" já existe. Duplicar?`)) return; }
+      const exists = this.snippets.list().find((s) => s.trigger === trigger);
+      if (exists) {
+        if (!confirm(`O atalho "${trigger}" já existe. Duplicar?`)) return;
+      }
       this.snippets.add(obj);
     } else {
       this.snippets.update(this.editingIndex, obj);
@@ -300,14 +314,20 @@ export class UIManager {
     const file = e.target.files[0];
     if (!file) return;
     const reader = new FileReader();
-    reader.onload = (ev) => { this.editor.setContent(ev.target.result); this.toast("Arquivo aberto com sucesso"); };
+    reader.onload = (ev) => {
+      this.editor.setContent(ev.target.result);
+      this.toast("Arquivo aberto com sucesso");
+    };
     reader.readAsText(file);
     e.target.value = "";
   }
 
   saveFile() {
     const content = this.editor.getContent();
-    if (!content) { this.toast("Editor vazio"); return; }
+    if (!content) {
+      this.toast("Editor vazio");
+      return;
+    }
     const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
     const a = document.createElement("a");
     const dateStr = new Date().toISOString().slice(0, 10);
@@ -326,7 +346,7 @@ export class UIManager {
       const btn = document.getElementById("btn-copy");
       const originalBg = btn.style.background;
       btn.style.background = "var(--success)";
-      setTimeout(() => btn.style.background = originalBg, 1000);
+      setTimeout(() => (btn.style.background = originalBg), 1000);
     });
   }
 
@@ -336,4 +356,3 @@ export class UIManager {
     setTimeout(() => this.dom.toast.classList.remove("show"), 2500);
   }
 }
-
