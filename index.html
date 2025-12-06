@@ -1,208 +1,358 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
-  
-  <title>MedDraft - Editor Clínico</title>
-  <meta name="description" content="Editor de texto médico offline-first. Substitua o bloco de notas por Markdown, Snippets e Vim. Evoluções clínicas rápidas, seguras e privadas no navegador.">
-  <meta name="keywords" content="MedDraft, Editor Médico, Prontuário Offline, Markdown para Médicos, SOAP, Anamnese Rápida, CodeMirror, Privacidade de Dados">
-  <meta name="author" content="Sidney Alves Crestani Jr.">
-  <meta name="theme-color" content="#0ea5e9">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content"
+    />
 
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://sidneycrestani.github.io/MedDraft/">
-  <meta property="og:title" content="MedDraft | Fluxo Clínico com Foco Absoluto">
-  <meta property="og:description" content="O rascunho perfeito para evoluções e anamneses. Sem nuvem, sem rastreamento, 100% local.">
-  <meta property="og:image" content="https://raw.githubusercontent.com/sidneycrestani/MedDraft/refs/heads/main/public/favicon/favicon.svg">
+    <title>MedDraft - Editor Clínico</title>
+    <meta
+      name="description"
+      content="Editor de texto médico offline-first. Substitua o bloco de notas por Markdown, Snippets e Vim. Evoluções clínicas rápidas, seguras e privadas no navegador."
+    />
+    <meta
+      name="keywords"
+      content="MedDraft, Editor Médico, Prontuário Offline, Markdown para Médicos, SOAP, Anamnese Rápida, CodeMirror, Privacidade de Dados"
+    />
+    <meta name="author" content="Sidney Alves Crestani Jr." />
+    <meta name="theme-color" content="#0ea5e9" />
 
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="MedDraft - Editor Clínico">
-  <meta name="twitter:description" content="Privacidade total e velocidade para profissionais de saúde.">
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://sidneycrestani.github.io/MedDraft/"
+    />
+    <meta
+      property="og:title"
+      content="MedDraft | Fluxo Clínico com Foco Absoluto"
+    />
+    <meta
+      property="og:description"
+      content="O rascunho perfeito para evoluções e anamneses. Sem nuvem, sem rastreamento, 100% local."
+    />
+    <meta
+      property="og:image"
+      content="https://raw.githubusercontent.com/sidneycrestani/MedDraft/refs/heads/main/public/favicon/favicon.svg"
+    />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  
-  <link rel="icon" type="image/png" href="/MedDraft/favicon/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="/MedDraft/favicon/favicon.svg" />
-  <link rel="shortcut icon" href="/MedDraft/favicon/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/MedDraft/favicon/apple-touch-icon.png" />
-  <meta name="apple-mobile-web-app-title" content="MedDraft" />
-  <link rel="manifest" href="/MedDraft/favicon/site.webmanifest" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="MedDraft - Editor Clínico" />
+    <meta
+      name="twitter:description"
+      content="Privacidade total e velocidade para profissionais de saúde."
+    />
 
-  <script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "WebApplication",
-    "name": "MedDraft",
-    "url": "https://sidneycrestani.github.io/MedDraft/",
-    "applicationCategory": "MedicalApplication",
-    "operatingSystem": "Web Browser",
-    "browserRequirements": "Requires JavaScript. Works best in Chrome/Edge/Safari.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "BRL"
-    },
-    "author": {
-      "@type": "Person",
-      "name": "Sidney Alves Crestani Jr.",
-      "url": "https://sidneycrestani.github.io"
-    },
-    "featureList": "Offline-first, Local Storage, Markdown Support, Medical Snippets, Vim Mode",
-    "description": "Ferramenta de produtividade médica focada em privacidade local e velocidade de digitação."
-  }
-  </script>
-  <script type="module" crossorigin src="/MedDraft/assets/index-My5WfbAw.js"></script>
-  <link rel="stylesheet" crossorigin href="/MedDraft/assets/index-CBu6nzZW.css">
-</head>
-<body>
-  <div id="app-menu" class="dropdown-menu">
-    <div class="menu-header">Configurações</div>
-    
-    <label class="menu-item">
-      <input type="checkbox" id="check-theme">
-      <span>Modo Escuro</span>
-    </label>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
 
-    <label class="menu-item">
-      <input type="checkbox" id="check-vim">
-      <span>Modo VIM (Edição Avançada)</span>
-    </label>
+    <link
+      rel="icon"
+      type="image/png"
+      href="/MedDraft/favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/MedDraft/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/MedDraft/favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/MedDraft/favicon/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="MedDraft" />
+    <link rel="manifest" href="/MedDraft/favicon/site.webmanifest" />
 
-    <div class="menu-footer">
-      <strong>MedDraft</strong><br>
-      Offline & Seguro • <a href="https://codemirror.net/" target="_blank" class="color-inherit">CodeMirror 6</a><br>
-      © 2025 Sidney Alves Crestani Jr.
-    </div>
-  </div>
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "WebApplication",
+        "name": "MedDraft",
+        "url": "https://sidneycrestani.github.io/MedDraft/",
+        "applicationCategory": "MedicalApplication",
+        "operatingSystem": "Web Browser",
+        "browserRequirements": "Requires JavaScript. Works best in Chrome/Edge/Safari.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "BRL"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Sidney Alves Crestani Jr.",
+          "url": "https://sidneycrestani.github.io"
+        },
+        "featureList": "Offline-first, Local Storage, Markdown Support, Medical Snippets, Vim Mode",
+        "description": "Ferramenta de produtividade médica focada em privacidade local e velocidade de digitação."
+      }
+    </script>
+    <script type="module" crossorigin src="/MedDraft/assets/index-q-gG97Sy.js"></script>
+    <link rel="stylesheet" crossorigin href="/MedDraft/assets/index-DjLQDiXX.css">
+  </head>
+  <body>
+    <div id="app-menu" class="dropdown-menu">
+      <div class="menu-header">Configurações</div>
 
-  <div id="toolbar">
-<div id="brand-trigger" class="brand" title="Menu">
-  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-icon">
-    <path d="M3 16H8L12 6L18 24L23 16H25" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-    
-    <rect x="27" y="10" width="3" height="12" rx="1" fill="#0ea5e9" class="cursor-blink"/>
-  </svg>
-  
-  <div class="brand-text">
-    <span class="med">Med</span><span class="draft">Draft</span>
-</div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><use href="/MedDraft/icons.svg#chevron" /></svg>
-    </div>
+      <label class="menu-item">
+        <input type="checkbox" id="check-theme" />
+        <span>Modo Escuro</span>
+      </label>
 
-    <div class="group">
-      <button id="btn-new" class="icon-only" title="Novo">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><use href="/MedDraft/icons.svg#file-new" /></svg>
-      </button>
-      <input type="file" id="fileInput" hidden accept=".txt,.md">
-      <button id="btn-open" title="Abrir" class="icon-only">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><use href="/MedDraft/icons.svg#folder-open" /></svg>
-      </button>
-      <button id="btn-save" title="Baixar" class="icon-only">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><use href="/MedDraft/icons.svg#download" /></svg>
-      </button>
-    </div>
+      <label class="menu-item">
+        <input type="checkbox" id="check-vim" />
+        <span>Modo VIM (Edição Avançada)</span>
+      </label>
 
-    <div class="group">
-      <button id="btn-undo" class="icon-only" title="Desfazer">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><use href="/MedDraft/icons.svg#undo" /></svg>
-      </button>
-      <button id="btn-redo" class="icon-only" title="Refazer">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><use href="/MedDraft/icons.svg#redo" /></svg>
-      </button>
-      <button id="btn-date" title="Inserir Data" class="icon-only">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><use href="/MedDraft/icons.svg#clock" /></svg>
-      </button>
-      <button id="btn-case" title="Maiúsculas/Minúsculas">
-        <span class="label-aa">Aa</span>
-      </button>
-    </div>
-
-    <div class="spacer"></div>
-
-    <button id="btn-sidebar-toggle" class="icon-only" title="Modelos (Snippets)">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><use href="/MedDraft/icons.svg#sidebar" /></svg>
-    </button>
-
-    <button id="btn-copy" class="cta" title="Copiar Texto">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><use href="/MedDraft/icons.svg#copy" /></svg>
-      <span class="label">COPIAR</span>
-    </button>
-  </div>
-
-  <div id="main-layout">
-    
-    <div id="editor-wrapper">
-      <div id="editor"></div>
-    </div>
-
-    <div id="sidebar">
-      <div class="sidebar-header">
-        <span id="sidebar-title">Modelos</span>
-        <div class="actions-row">
-           <button id="btn-json" class="icon-only" title="JSON Import/Export">
-             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><use href="/MedDraft/icons.svg#arrows" /></svg>
-           </button>
-           <button id="btn-sidebar-close" class="icon-only" title="Fechar">✕</button>
-        </div>
-      </div>
-      
-      <div class="sidebar-content">
-        <div id="view-list" class="view-container active">
-           <button id="btn-create-snippet" class="cta fullwidth mb10 center">+ Criar Novo</button>
-           <p class="helper-text helper-small">
-             Clique para inserir ou digite o atalho + <strong>Tab</strong>.
-           </p>
-           <ul id="snippet-list-ui" class="snippet-list"></ul>
-        </div>
-
-        <div id="view-edit" class="view-container">
-          <div class="edit-grid">
-            <div class="input-group">
-              <label>Nome</label>
-              <input type="text" id="edit-name">
-            </div>
-            <div class="input-group">
-              <label>Atalho (Gatilho)</label>
-              <input type="text" id="edit-trigger">
-            </div>
-          </div>
-          <div class="input-group flex-col flex-1">
-            <label>Conteúdo (${1:foco})</label>
-            <textarea id="edit-content" class="code-editor" spellcheck="false"></textarea>
-          </div>
-          <div class="mt-10 flex gap-8">
-            <button id="btn-cancel-edit" class="flex-1">Cancelar</button>
-            <button id="btn-save-snippet" class="cta flex-1 no-ml">Salvar</button>
-          </div>
-        </div>
-
-        <div id="view-json" class="view-container">
-           <p class="helper-text">Copie para backup ou cole para importar.</p>
-           <textarea id="json-editor" class="code-editor h300"></textarea>
-           <div class="mt-10 flex gap-8 wrap">
-             <button id="btn-copy-json" class="flex-1">Copiar</button>
-             <button id="btn-import-json" class="cta flex-1 no-ml">Importar</button>
-           </div>
-           <button id="btn-back-list" class="fullwidth mt-8">Voltar</button>
-        </div>
+      <div class="menu-footer">
+        <strong>MedDraft</strong><br />
+        Offline & Seguro •
+        <a href="https://codemirror.net/" target="_blank" class="color-inherit"
+          >CodeMirror 6</a
+        ><br />
+        © 2025 Sidney Alves Crestani Jr.
       </div>
     </div>
-  </div>
 
-  <div id="status">
-    <div class="status-item">
-      <span id="save-status" class="save-status">✓ Salvo</span>
-    </div>
-    <div class="status-item flex gap-10">
-      <span id="char-count">0 chars</span>
-      <span id="cursor-pos">Ln 1</span>
-    </div>
-  </div>
+    <div id="toolbar">
+      <div id="brand-trigger" class="brand" title="Menu">
+        <svg
+          width="32"
+          height="32"
+          viewBox="0 0 32 32"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          class="logo-icon"
+        >
+          <path
+            d="M3 16H8L12 6L18 24L23 16H25"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
 
-  <div id="toast"><span id="toast-msg">Notificação</span></div>
+          <rect
+            x="27"
+            y="10"
+            width="3"
+            height="12"
+            rx="1"
+            fill="#0ea5e9"
+            class="cursor-blink"
+          />
+        </svg>
+
+        <div class="brand-text">
+          <span class="med">Med</span><span class="draft">Draft</span>
+        </div>
+        <svg
+          class="chevron"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <use href="/MedDraft/icons.svg#chevron" />
+        </svg>
+      </div>
+
+      <div class="group">
+        <button id="btn-new" class="icon-only" title="Novo">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <use href="/MedDraft/icons.svg#file-new" />
+          </svg>
+        </button>
+        <input type="file" id="fileInput" hidden accept=".txt,.md" />
+        <button id="btn-open" title="Abrir" class="icon-only">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <use href="/MedDraft/icons.svg#folder-open" />
+          </svg>
+        </button>
+        <button id="btn-save" title="Baixar" class="icon-only">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <use href="/MedDraft/icons.svg#download" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="group">
+        <button id="btn-undo" class="icon-only" title="Desfazer">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <use href="/MedDraft/icons.svg#undo" />
+          </svg>
+        </button>
+        <button id="btn-redo" class="icon-only" title="Refazer">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <use href="/MedDraft/icons.svg#redo" />
+          </svg>
+        </button>
+        <button id="btn-date" title="Inserir Data" class="icon-only">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <use href="/MedDraft/icons.svg#clock" />
+          </svg>
+        </button>
+        <button id="btn-case" title="Maiúsculas/Minúsculas">
+          <span class="label-aa">Aa</span>
+        </button>
+      </div>
+
+      <div class="spacer"></div>
+
+      <button
+        id="btn-sidebar-toggle"
+        class="icon-only"
+        title="Modelos (Snippets)"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <use href="/MedDraft/icons.svg#sidebar" />
+        </svg>
+      </button>
+
+      <button id="btn-copy" class="cta" title="Copiar Texto">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <use href="/MedDraft/icons.svg#copy" />
+        </svg>
+        <span class="label">COPIAR</span>
+      </button>
+    </div>
+
+    <div id="main-layout">
+      <div id="editor-wrapper">
+        <div id="editor"></div>
+      </div>
+
+      <div id="sidebar">
+        <div class="sidebar-header">
+          <span id="sidebar-title">Modelos</span>
+          <div class="actions-row">
+            <button id="btn-json" class="icon-only" title="JSON Import/Export">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <use href="/MedDraft/icons.svg#arrows" />
+              </svg>
+            </button>
+            <button id="btn-sidebar-close" class="icon-only" title="Fechar">
+              ✕
+            </button>
+          </div>
+        </div>
+
+        <div class="sidebar-content">
+          <div id="view-list" class="view-container active">
+            <button id="btn-create-snippet" class="cta fullwidth mb10 center">
+              + Criar Novo
+            </button>
+            <p class="helper-text helper-small">
+              Clique para inserir ou digite o atalho + <strong>Tab</strong>.
+            </p>
+            <ul id="snippet-list-ui" class="snippet-list"></ul>
+          </div>
+
+          <div id="view-edit" class="view-container">
+            <div class="edit-grid">
+              <div class="input-group">
+                <label>Nome</label>
+                <input type="text" id="edit-name" />
+              </div>
+              <div class="input-group">
+                <label>Atalho (Gatilho)</label>
+                <input type="text" id="edit-trigger" />
+              </div>
+            </div>
+            <div class="input-group flex-col flex-1">
+              <label>Conteúdo (${1:foco})</label>
+              <textarea
+                id="edit-content"
+                class="code-editor"
+                spellcheck="false"
+              ></textarea>
+            </div>
+            <div class="mt-10 flex gap-8">
+              <button id="btn-cancel-edit" class="flex-1">Cancelar</button>
+              <button id="btn-save-snippet" class="cta flex-1 no-ml">
+                Salvar
+              </button>
+            </div>
+          </div>
+
+          <div id="view-json" class="view-container">
+            <p class="helper-text">Copie para backup ou cole para importar.</p>
+            <textarea id="json-editor" class="code-editor h300"></textarea>
+            <div class="mt-10 flex gap-8 wrap">
+              <button id="btn-copy-json" class="flex-1">Copiar</button>
+              <button id="btn-import-json" class="cta flex-1 no-ml">
+                Importar
+              </button>
+            </div>
+            <button id="btn-back-list" class="fullwidth mt-8">Voltar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="status">
+      <div class="status-item">
+        <span id="save-status" class="save-status">✓ Salvo</span>
+      </div>
+      <div class="status-item flex gap-10">
+        <span id="char-count">0 chars</span>
+        <span id="cursor-pos">Ln 1</span>
+      </div>
+    </div>
+
+    <div id="toast"><span id="toast-msg">Notificação</span></div>
 
-</body>
+  </body>
 </html>
