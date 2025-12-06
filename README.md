@@ -1,59 +1,56 @@
-# MedDraft 🩺
+<div align="center">
+  <img src="https://raw.githubusercontent.com/sidneycrestani/MedDraft/refs/heads/main/favicon/favicon.svg" alt="MedDraft Logo" width="100" height="100" />
+  <h1>MedDraft</h1>
+  <p>
+    <b>Fluxo Clínico. Foco Absoluto. Privacidade Total.</b>
+  </p>
+  
+  <p>
+    <a href="https://sidneycrestani.github.io/MedDraft/">
+      <img src="https://img.shields.io/badge/Live_Demo-Acessar_Agora-0ea5e9?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Live Demo" />
+    </a>
+  </p>
 
-O MedDraft é uma ferramenta de anotação rápida, segura e *offline-first*, desenvolvida especificamente para profissionais de saúde e estudantes de medicina. Focado em produtividade, ele permite a criação de evoluções (SOAP), prescrições e resumos utilizando Markdown, com um poderoso sistema de **Snippets (Modelos)**.
+  ![Status](https://img.shields.io/badge/Status-Estável-green)
+  ![Tech](https://img.shields.io/badge/Engine-CodeMirror_6-orange)
+  ![Privacy](https://img.shields.io/badge/Data-Local_Only-blueviolet)
+  ![License](https://img.shields.io/badge/License-MIT-lightgrey)
+</div>
 
-> **Privacidade Total:** Todos os dados são salvos localmente no navegador (`localStorage`). Nenhuma informação do paciente é enviada para servidores externos.
+<br />
 
----
+## 🩺 O que é o MedDraft?
 
-### 🚀 Acesso Rápido (Live Demo)
+O **MedDraft** não é apenas um bloco de notas. É um ambiente de escrita desenhado para a velocidade de raciocínio do profissional de saúde. 
 
-**Utilize a versão online agora mesmo (sem instalação):**
-### [🔗 https://sidneycrestani.github.io/MedDraft/](https://sidneycrestani.github.io/MedDraft/)
+Unindo a agilidade do **Markdown**, o poder dos **Snippets** (modelos inteligentes) e a privacidade do armazenamento local, ele serve como o "rascunho perfeito" para evoluções (SOAP), anamneses e prescrições antes de serem transferidas para prontuários eletrônicos lentos e burocráticos.
 
----
-
-![Status](https://img.shields.io/badge/Status-Estável-green)
-![Deploy](https://img.shields.io/badge/Deploy-GitHub_Pages-blue)
-![Tech](https://img.shields.io/badge/Tech-CodeMirror_6-orange)
-![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
 ## ✨ Funcionalidades Principais
 
-### 📝 Edição Poderosa
-- **Baseado no CodeMirror 6:** Editor moderno, rápido e extensível.
-- **Markdown Support:** Realce de sintaxe para fácil formatação.
-- **Modo Vim:** Para usuários avançados que preferem navegação via teclado (ativável nas configurações).
-- **Temas:** Suporte nativo para **Modo Claro** e **Modo Escuro**.
+### ⚡ Produtividade & Fluxo (Flow)
+- **Sistema de Snippets Avançado:** Crie modelos com placeholders tabuláveis (ex: `${1:queixa}`). Digite o atalho, aperte `Tab` e preencha.
+- **Modo Vim:** Para usuários "Power Users" que desejam editar texto sem tirar as mãos do teclado (ativável no menu).
+- **Ferramentas de Texto:** Alternância de Caixa (Maiúscula/Minúscula/Título), Data/Hora automática e contadores em tempo real.
 
-### 🚀 Produtividade Clínica
-- **Gerenciador de Modelos (Snippets):**
-  - Crie modelos reutilizáveis (ex: Exame Físico Normal, Anamnese Padrão).
-  - **Autocompletar:** Digite o atalho (gatilho) e pressione `Tab`.
-  - Suporte a placeholders tabuláveis (sintaxe `${1:foco}`).
-- **Auto-Save Inteligente:** Salvamento automático no navegador com *debounce* para performance e proteção contra travamentos.
-- **Ferramentas de Texto:**
-  - Alternar Maiúsculas/Minúsculas/Título (Title Case).
-  - Inserção rápida de Data/Hora atual.
-  - Contador de caracteres e linhas.
+### 📝 Edição Moderna
+- **Core CodeMirror 6:** Performance nativa, leve e robusta.
+- **Sintaxe Markdown:** Formatação visual automática enquanto você digita.
+- **Temas Médicos:** Interface limpa, disponível em **Light Mode** (Hospitalar) e **Dark Mode** (Radiológico/Plantão Noturno).
 
-### 💾 Importação e Exportação
-- Abrir arquivos locais (`.txt`, `.md`).
-- Salvar anotações no disco.
-- Exportar/Importar biblioteca de Snippets via JSON (backup fácil).
-- Botão "Copiar" formatado para colar em prontuários eletrônicos externos.
+### 🔒 Privacidade "by Design"
+- **Offline-First:** Funciona sem internet.
+- **Local Storage:** Seus dados nunca saem do seu navegador. Não há servidores, não há tracking, não há risco de vazamento na nuvem.
+- **Auto-Save Inteligente:** Salvamento automático com *debounce* para garantir que você nunca perca uma linha de pensamento.
 
-## 🛠️ Tecnologias Utilizadas
+## 🚀 Acesso Rápido
 
-- **Core:** JavaScript (ES Modules)
-- **Editor Engine:** [@codemirror/state, @codemirror/view](https://codemirror.net/)
-- **Linguagem:** [@codemirror/lang-markdown](https://github.com/codemirror/lang-markdown)
-- **Keybindings:** [@replit/codemirror-vim](https://github.com/replit/codemirror-vim)
-- **Estilização:** CSS Variables (Themes)
+Não requer instalação. Acesse via navegador (Desktop ou Mobile):
+### [🔗 sidneycrestani.github.io/MedDraft](https://sidneycrestani.github.io/MedDraft/)
 
-## 📦 Desenvolvimento Local
+## 🛠️ Instalação Local (Para Desenvolvedores)
 
-Se você é um desenvolvedor e deseja contribuir ou rodar localmente:
+Se você deseja contribuir com o código ou rodar uma instância própria:
 
 1. **Clone o repositório:**
    ```bash
@@ -71,26 +68,29 @@ Se você é um desenvolvedor e deseja contribuir ou rodar localmente:
    npm run dev
    ```
 
-## 🧩 Estrutura do Código
+## ⌨️ Atalhos de Teclado Essenciais
 
-- **`index.html`**: Estrutura da UI, Toolbar, Sidebar de Snippets e importação dos módulos.
-- **`src/EditorManager.js`**: Classe principal que gerencia a instância do CodeMirror.
-  - Gerencia *Compartments* para reconfiguração dinâmica (Temas, Vim, Keymaps).
-  - Lida com sanitização de I/O e *debounce* do LocalStorage.
-  - Expõe métodos para a UI (insertSnippet, toggleCase, etc.).
-- **`src/config/themes.js`**: Contém as definições de cores para os temas Claro/Escuro.
+| Tecla | Ação |
+| :--- | :--- |
+| `Tab` | Expande Snippet (se gatilho digitado) ou Indenta |
+| `Ctrl` + `Space` | Abre menu de autocompletar |
+| `Ctrl` + `Z` | Desfazer |
+| `Ctrl` + `Y` | Refazer |
+| `Ctrl` + `[` | Diminuir indentação |
 
-## 🔒 Privacidade e Segurança
+## 🧩 Estrutura do Projeto
 
-Este editor foi desenhado sob o princípio de **Privacy by Design**:
-1. O código roda inteiramente no **Client-Side** (navegador).
-2. O armazenamento (`localStorage`) é isolado no dispositivo do usuário.
-3. Não há scripts de rastreamento ou envio de telemetria no código base.
+- **`index.html`**: UI Principal, Toolbar e carregamento do Branding (SVG Inline).
+- **`src/EditorManager.js`**: O "cérebro" do editor. Gerencia o estado, temas, sanitização de dados e *features* do CodeMirror.
+- **`src/SnippetManager.js`**: Lógica de autocompletar e gestão da biblioteca de modelos.
+- **`src/main.js`**: Ponto de entrada e orquestração de eventos DOM.
 
 ## 📄 Licença
 
-Distribuído sob a licença MIT. Veja `LICENSE` para mais informações.
+Este projeto é distribuído sob a licença **MIT**. Sinta-se livre para usar, modificar e distribuir.
 
 ---
 
-Desenvolvido por **Sidney Alves Crestani Jr.**
+<div align="center">
+  <small>Desenvolvido com por <b>Sidney Alves Crestani Jr.</b></small>
+</div>

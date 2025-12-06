@@ -1,6 +1,6 @@
 import { EditorView } from "@codemirror/view";
-import { tags } from "@lezer/highlight";
 import { HighlightStyle } from "@codemirror/language";
+import { tags as t } from "@lezer/highlight";
 
 // --- 1. Base Theme (Layout & Estrutura) ---
 const baseThemeStyles = {
@@ -214,13 +214,15 @@ export const medicalDarkTheme = EditorView.theme({
 // Unificado pois usa CSS Variables para as cores
 
 const sharedHighlightStyle = HighlightStyle.define([
-  { tag: tags.heading, color: "var(--primary)", fontWeight: "700", fontSize: "1.05em" },
-  { tag: tags.strong, color: "var(--text-main)", fontWeight: "700" },
-  { tag: tags.emphasis, color: "var(--text-main)", fontStyle: "italic" },
-  { tag: tags.link, color: "var(--primary)", textDecoration: "underline" },
-  { tag: tags.monospace, color: "var(--text-main)", background: "var(--bg-gutter)", borderRadius: "3px", padding: "0 4px" },
-  { tag: tags.list, color: "var(--primary)", fontWeight: "700" },
-  { tag: tags.quote, color: "var(--text-muted)", fontStyle: "italic" }
+  { tag: t.heading, color: "var(--primary)", fontWeight: "700", fontSize: "1.3em" },
+  { tag: t.strong, color: "var(--text-main)", fontWeight: "700" },
+  { tag: t.emphasis, color: "var(--text-main)", fontStyle: "italic" },
+  { tag: t.link, color: "var(--primary)", textDecoration: "underline" },
+  { tag: t.monospace, color: "var(--text-main)", background: "var(--bg-gutter)", borderRadius: "3px", padding: "0 4px" },
+  { tag: t.list, color: "var(--primary)", fontWeight: "700" },
+  { tag: t.quote, color: "var(--text-muted)", fontStyle: "italic" },
+  { tag: t.processingInstruction, color: "var(--text-muted)" },
+  { tag: t.meta, color: "var(--text-muted)" } 
 ]);
 
 export const HighlightStyles = {
