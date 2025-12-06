@@ -10,6 +10,12 @@
   <link rel="stylesheet" href="/src/base.css">
   <link rel="stylesheet" href="/src/layout.css">
   <link rel="stylesheet" href="/src/components.css">
+<link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+<link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon//apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="MedDraft" />
+<link rel="manifest" href="/favicon/site.webmanifest" />
 </head>
 <body>
   <!-- Menu Dropdown (Antigo Modal Sobre) -->
@@ -37,8 +43,22 @@
   <div id="toolbar">
     <!-- 1. Branding com Dropdown -->
     <div id="brand-trigger" class="brand" title="Menu">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="/icons.svg#brand" /></svg>
-      <span>MedDraft</span>
+<!-- Dentro do index.html -->
+<div id="brand-trigger" class="brand" title="Menu">
+  <!-- LOGO EXCLUSIVA MEDDRAFT -->
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-icon">
+    <!-- O Batimento (Linha) -->
+    <path d="M3 16H8L12 6L18 24L23 16H25" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- O Cursor (Bloco Sólido) - Representa o Editor -->
+    <rect x="27" y="10" width="3" height="12" rx="1" fill="#0ea5e9" class="cursor-blink"/>
+  </svg>
+  
+  <!-- Tipografia Diferenciada -->
+  <div class="brand-text">
+    <span class="med">Med</span><span class="draft">Draft</span>
+  </div>
+</div>
       <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><use href="/icons.svg#chevron" /></svg>
     </div>
 

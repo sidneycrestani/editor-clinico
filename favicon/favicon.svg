@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512"><svg width="512" height="512" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fundo (Opcional - Círculo ou Quadrado arredondado) -->
+  <rect x="0" y="0" width="32" height="32" rx="6" fill="#0f172a" data-darkreader-inline-fill="" style="--darkreader-inline-fill: var(--darkreader-background-0f172a, #000719);"></rect> 
+  
+  <!-- Linha do Batimento -->
+  <path d="M4 16H8L12 8L18 24L23 16H25" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" data-darkreader-inline-stroke="" style="--darkreader-inline-stroke: var(--darkreader-text-ffffff, #f2f0ed);"></path>
+  
+  <!-- Cursor (Azul Destaque) -->
+  <rect x="27" y="11" width="3" height="10" rx="1" fill="#0ea5e9" data-darkreader-inline-fill="" style="--darkreader-inline-fill: var(--darkreader-background-0ea5e9, #0084c0);"></rect>
+</svg><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
+@media (prefers-color-scheme: dark) { :root { filter: none; } }
+</style></svg>

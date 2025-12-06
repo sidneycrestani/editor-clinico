@@ -22,3 +22,43 @@
 .sidebar-content { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; }
 #status { height: 28px; background: var(--bg-surface); color: var(--text-muted); border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; padding: 0 16px; font-size: 11px; font-weight: 500; flex-shrink: 0; z-index: 40; }
 
+/* Branding Styles */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Animação sutil do cursor piscando (opcional, mas fica incrível) */
+@keyframes soft-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.cursor-blink {
+  animation: soft-blink 1.5s infinite; /* Pisca como um cursor real */
+}
+
+/* Tipografia do Logo */
+.brand-text {
+  display: flex;
+  flex-direction: column; /* Ou row, dependendo do espaço */
+  line-height: 1;
+}
+
+.brand-text .med {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: -0.5px;
+  color: var(--text-primary);
+}
+
+.brand-text .draft {
+  font-family: 'JetBrains Mono', monospace; /* Fonte de código para "Draft" */
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: #0ea5e9; /* Cor de destaque (Azul Sky) */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
