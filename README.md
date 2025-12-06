@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/sidneycrestani/MedDraft/refs/heads/main/favicon/favicon.svg" alt="MedDraft Logo" width="100" height="100" />
+  <img src="https://raw.githubusercontent.com/sidneycrestani/MedDraft/refs/heads/main/public/favicon/favicon.svg" alt="MedDraft Logo" width="100" height="100" />
   <h1>MedDraft</h1>
   <p>
     <b>Fluxo Clínico. Foco Absoluto. Privacidade Total.</b>
