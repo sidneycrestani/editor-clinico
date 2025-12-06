@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  base: '/editor-clinico/',
+  base: '/MedDraft/',
   server: {
     port: 5173,
     open: true
