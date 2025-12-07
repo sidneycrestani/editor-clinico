@@ -3,7 +3,9 @@
   display: flex;
   overflow: hidden;
   position: relative;
-  height: calc(100vh - 56px - 28px);
+  height: auto;
+  min-height: 0;
+
 }
 #editor-wrapper {
   flex: 1;
@@ -88,14 +90,14 @@
   flex-direction: column;
 }
 #status {
-  height: 28px;
+  height: 24px;
   background: var(--bg-surface);
   color: var(--text-muted);
   border-top: 1px solid var(--border);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 16px;
+  padding: 0px 16px;
   font-size: 11px;
   font-weight: 500;
   flex-shrink: 0;
