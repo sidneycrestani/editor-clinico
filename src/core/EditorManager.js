@@ -55,18 +55,36 @@ export class EditorManager extends EventTarget {
       console.warn("Erro ao acessar localStorage:", e);
     }
 
+    const state = EditorState.create({
+      doc: savedContent,
+      extensions: this.getExtensions(isDark),
+    });
+
+    this.view = new EditorView({
+      state,
+      parent,
+      dispatch: (tr) => {
+        if (!this.view) return;
+
+        this.view.update([tr]);
+        if (tr.docChanged) this.onDocChange();
+        if (tr.selection) this.onSelectionChange();
+      },
+    });
+    if (useVim) this.toggleVim(true);
+
+    this.view.focus();
+  }
+
+  getExtensions(isDark) {
     const insertTab = (view) => {
       view.dispatch(view.state.replaceSelection("\t"));
       return true;
     };
-    const baseExtensions = [
+    const exts = [
       this.keymapConfig.of(
         keymap.of([
-          {
-            key: "Tab",
-            preventDefault: true,
-            run: insertTab,
-          },
+          { key: "Tab", preventDefault: true, run: insertTab },
           ...defaultKeymap,
           ...historyKeymap,
           ...foldKeymap,
@@ -78,7 +96,6 @@ export class EditorManager extends EventTarget {
         markerDOM: (open) => {
           const span = document.createElement("span");
           span.className = `gutter-fold-icon ${open ? "open" : "closed"}`;
-
           span.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>`;
           return span;
         },
@@ -100,31 +117,9 @@ export class EditorManager extends EventTarget {
         )
       ),
       this.vimConfig.of([]),
+      this.themeConfig.of(isDark ? medicalDarkTheme : medicalLightTheme),
     ];
-
-    baseExtensions.push(
-      this.themeConfig.of(isDark ? medicalDarkTheme : medicalLightTheme)
-    );
-
-    const state = EditorState.create({
-      doc: savedContent,
-      extensions: baseExtensions,
-    });
-
-    this.view = new EditorView({
-      state,
-      parent,
-      dispatch: (tr) => {
-        if (!this.view) return;
-
-        this.view.update([tr]);
-        if (tr.docChanged) this.onDocChange();
-        if (tr.selection) this.onSelectionChange();
-      },
-    });
-    if (useVim) this.toggleVim(true);
-
-    this.view.focus();
+    return exts;
   }
 
   onDocChange() {
@@ -180,22 +175,26 @@ export class EditorManager extends EventTarget {
   async toggleVim(enabled) {
     if (!this.view) return;
     if (enabled) {
-      if (!this.vimExtension) {
-        try {
-          const { vim, Vim } = await import("@replit/codemirror-vim");
-          this.vimExtension = vim();
-          this.configureVim(Vim);
-        } catch (e) {
-          console.error("Erro ao carregar módulo Vim:", e);
-          return;
-        }
-      }
+      await this.loadVimDynamic();
       this.view.dispatch({
         effects: this.vimConfig.reconfigure(this.vimExtension),
       });
     } else {
       this.view.dispatch({ effects: this.vimConfig.reconfigure([]) });
     }
+  }
+
+  async loadVimDynamic() {
+    if (!this.vimExtension) {
+      try {
+        const { vim, Vim } = await import("@replit/codemirror-vim");
+        this.vimExtension = vim();
+        this.configureVim(Vim);
+      } catch {
+        return;
+      }
+    }
+    return this.vimExtension;
   }
 
   insertSnippet(content) {
@@ -282,6 +281,29 @@ export class EditorManager extends EventTarget {
       changes: { from: 0, to: this.view.state.doc.length, insert: "" },
     });
     this.view.focus();
+  }
+
+  reset() {
+    if (!this.view) return;
+    const isDark = document.body.classList.contains("dark-mode");
+    const newState = EditorState.create({
+      doc: "",
+      extensions: this.getExtensions(isDark),
+    });
+    this.view.setState(newState);
+    try {
+      if (localStorage.getItem("med_editor_vim") === "true")
+        this.toggleVim(true);
+    } catch (e) {
+      console.warn("Erro ao acessar localStorage:", e);
+    }
+    try {
+      localStorage.removeItem(this.storageKey);
+    } catch (e) {
+      console.warn("Erro ao limpar:", e);
+    }
+    this.view.focus();
+    this.onDocChange();
   }
 
   getContent() {

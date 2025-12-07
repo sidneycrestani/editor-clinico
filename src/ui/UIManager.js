@@ -23,6 +23,10 @@ export class UIManager {
       saveStatus: document.getElementById("save-status"),
       toast: document.getElementById("toast"),
       toastMsg: document.getElementById("toast-msg"),
+      modalOverlay: document.getElementById("modal-overlay"),
+      modalBtnCancel: document.getElementById("modal-btn-cancel"),
+      modalBtnClear: document.getElementById("modal-btn-clear"),
+      modalBtnSaveClear: document.getElementById("modal-btn-save-clear"),
     };
   }
 
@@ -45,7 +49,8 @@ export class UIManager {
 
   wireEvents() {
     this.bindClick("btn-new", () => {
-      if (confirm("Deseja limpar todo o editor?")) this.editor.clear();
+      if (!this.editor.getContent().trim()) return;
+      this.openModal();
     });
     this.bindClick("btn-open", () => this.dom.fileInput.click());
     this.bindClick("btn-save", () => this.saveFile());
@@ -122,6 +127,34 @@ export class UIManager {
       const { line } = e.detail;
       this.dom.cursorPos.textContent = `Ln ${line}`;
     });
+    this.bindClick("modal-btn-cancel", () => this.closeModal());
+    this.bindClick("modal-btn-clear", () => {
+      this.editor.reset();
+      this.closeModal();
+      this.toast("Editor limpo");
+    });
+    this.bindClick("modal-btn-save-clear", () => {
+      this.saveFile();
+      setTimeout(() => {
+        this.editor.reset();
+        this.closeModal();
+        this.toast("Salvo e limpo");
+      }, 200);
+    });
+    if (this.dom.modalOverlay) {
+      this.dom.modalOverlay.addEventListener("click", (e) => {
+        if (e.target === this.dom.modalOverlay) this.closeModal();
+      });
+    }
+    document.addEventListener("keydown", (e) => {
+      if (
+        e.key === "Escape" &&
+        this.dom.modalOverlay &&
+        this.dom.modalOverlay.classList.contains("show")
+      ) {
+        this.closeModal();
+      }
+    });
   }
 
   bindClick(id, handler) {
@@ -129,6 +162,16 @@ export class UIManager {
     if (el) el.addEventListener("click", handler);
   }
 
+  openModal() {
+    if (!this.dom.modalOverlay) return;
+    this.dom.modalOverlay.classList.add("show");
+    if (this.dom.modalBtnCancel) this.dom.modalBtnCancel.focus();
+  }
+
+  closeModal() {
+    if (!this.dom.modalOverlay) return;
+    this.dom.modalOverlay.classList.remove("show");
+  }
   toggleTheme() {
     const isDark = document.body.classList.toggle("dark-mode");
     localStorage.setItem("med_editor_theme", isDark ? "dark" : "light");
