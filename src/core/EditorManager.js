@@ -25,6 +25,7 @@ import {
   medicalDarkTheme,
   HighlightStyles,
 } from "../config/themes";
+import { getDateTimeBR } from "../utils/date";
 
 export class EditorManager extends EventTarget {
   constructor({ storageKey = "med_editor_content", snippetManager } = {}) {
@@ -220,16 +221,14 @@ export class EditorManager extends EventTarget {
 
   insertDate() {
     if (!this.view) return;
-    const now = new Date();
-    const str =
-      now.toLocaleDateString("pt-BR") +
-      " " +
-      now.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" }) +
-      " - ";
+
+    // Usando o utilitário
+    const { display } = getDateTimeBR();
+    const str = `${display} - `;
+
     const range = this.view.state.selection.main;
     this.view.dispatch({
       changes: { from: range.from, to: range.to, insert: str },
-      selection: { anchor: range.from + str.length },
     });
     this.view.focus();
   }

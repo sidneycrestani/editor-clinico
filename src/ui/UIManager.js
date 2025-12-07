@@ -1,3 +1,4 @@
+import { getDateTimeBR } from "../utils/date";
 export class UIManager {
   constructor({ editorManager, snippetManager }) {
     this.editor = editorManager;
@@ -373,9 +374,11 @@ export class UIManager {
     }
     const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
     const a = document.createElement("a");
-    const dateStr = new Date().toISOString().slice(0, 10);
+
+    const { filename } = getDateTimeBR();
+    a.download = `evolucao_${filename}.txt`;
+
     a.href = URL.createObjectURL(blob);
-    a.download = `evolucao_${dateStr}.txt`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
