@@ -15,7 +15,7 @@ const baseThemeStyles = {
       backgroundColor: "var(--selection-bg) !important",
     },
   ".cm-content": {
-    padding: "18px 8px",
+    padding: "14px 8px",
     fontFamily: "var(--font-editor)",
     caretColor: "var(--primary)",
   },
