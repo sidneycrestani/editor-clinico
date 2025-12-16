@@ -47,7 +47,7 @@ export default defineConfig({
       }
     }),
   ],
-  base: "/MedDraft/",
+  base: "/",
   server: {
     port: 5173,
     open: true,
